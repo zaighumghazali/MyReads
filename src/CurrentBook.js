@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import ShelfChanger from './ShelfChanger'
+import PropTypes from 'prop-types'
 
 class CurrentBook extends Component {
   shelfChanged = (value) => {
@@ -23,5 +24,9 @@ class CurrentBook extends Component {
 
     
   }
+}
+CurrentBook.PropTypes = {
+  book : PropTypes.object.isRequired,
+  shelfChanged: PropTypes.func.isRequired
 }
 export default CurrentBook;

@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import CurrentBook from './CurrentBook'
 import {debounce} from 'lodash'
+import PropTypes from 'prop-types'
 
 class SearchBooks extends Component {
   state = {
@@ -61,5 +62,9 @@ class SearchBooks extends Component {
     
     )
   }
+}
+SearchBooks.PropTypes = {
+  shelfChanged: PropTypes.func.isRequired,
+  books: PropTypes.array.isRequired
 }
 export default SearchBooks

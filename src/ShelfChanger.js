@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 
 class ShelfChanger extends Component {
   valueChanged = (event) => {
@@ -20,5 +21,9 @@ class ShelfChanger extends Component {
 
   }
 
+}
+ShelfChanger.PropTypes = {
+  currentShelf: PropTypes.string.isRequired,
+  shelfChanged: PropTypes.func.isRequired,
 }
 export default ShelfChanger;

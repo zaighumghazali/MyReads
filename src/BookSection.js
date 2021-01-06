@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import CurrentBook from './CurrentBook'
+import PropTypes from 'prop-types'
 
 class BookSection extends Component {
   shelfChanged = (value, book) => {
@@ -24,5 +25,10 @@ class BookSection extends Component {
   }
 
 }
-
+BookSection.PropTypes = {
+  currentShelf: PropTypes.string.isRequired,
+  shelfChanged: PropTypes.func.isRequired,
+  books: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired
+}
 export default BookSection;
