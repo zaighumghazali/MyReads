@@ -22,9 +22,13 @@ class SearchBooks extends Component {
     }
     BooksAPI.search(value, 50)
     .then((books) => {
-      this.setState(()=> ({
+      if (books.error !== 'empty query') {
+        this.setState(()=> ({
         books: books
-      }))  
+      }))
+      
+      }
+        
      })
   }, 1000);
   shelfChanged = (value, book) => {
