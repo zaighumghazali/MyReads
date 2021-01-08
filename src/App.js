@@ -5,8 +5,22 @@ import BookSection from './BookSection'
 import {Route} from 'react-router-dom'
 import {Link} from 'react-router-dom'
 import SearchBooks from './SearchBooks'
-
+const SHELVES = [
+  {
+    title: 'Currently Reading',
+    id: 'currentlyReading'
+  },
+  {
+    title: 'Want To Read',
+    id: 'wantToRead'
+  },
+  {
+    title: 'Read',
+    id: 'read'
+  }
+];
 class BooksApp extends React.Component {
+  
   state={
     /**
      * TODO: Instead of using this state variable to keep track of which page
@@ -23,12 +37,9 @@ class BooksApp extends React.Component {
   componentDidMount() {
     this.getAllBooks()
   }
-  getAllBooks = () => {
-    BooksAPI.getAll()
-      .then((books) => {
-      this.filterBooks(books)
-        
-      })
+  getAllBooks = async() => {
+    const books = await BooksAPI.getAll()
+    this.filterBooks(books)
   }
   filterBooks = (books) => {
     let curentlyReading= books.filter((book)=>(book.shelf==='currentlyReading'))
@@ -66,9 +77,10 @@ class BooksApp extends React.Component {
               </div>
               <div className="list-books-content">
                 <div>
-                  <BookSection currentShelf={'currentlyReading'} books={this.state.currentlyReading} title={'Currently Reading'} shelfChanged={this.shelfChanged}/>
-                  <BookSection currentShelf={'wantToRead'} books={this.state.wantToRead} title={'Want To Read'} shelfChanged={this.shelfChanged}/>
-                  <BookSection currentShelf={'read'} books={this.state.read} title={'Read'} shelfChanged={this.shelfChanged}/>
+    			  {SHELVES.map((shelf)=>(
+                    <BookSection currentShelf={shelf.id} books={this.state[shelf.id]} title={shelf.title} shelfChanged={this.shelfChanged}/>
+                  
+                  ))}
                 </div>
               </div>
 			  <div className="open-search">
