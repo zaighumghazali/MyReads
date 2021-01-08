@@ -27,6 +27,11 @@ class SearchBooks extends Component {
         books: books
       }))
       
+      } else {
+        this.setState(()=> ({
+        books: []
+      }))
+      
       }
         
      })
